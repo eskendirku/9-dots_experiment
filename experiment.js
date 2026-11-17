@@ -449,7 +449,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const isFullscreen = () => !!(document.fullscreenElement || document.webkitFullscreenElement);
 
   function checkFullscreen() {
-    $('fullscreen-prompt-banner').classList.toggle('hidden', isFullscreen());
+    const isDrawingState = state.appState === 'TRAINING' || state.appState === 'TASK';
+    $('fullscreen-prompt-banner').classList.toggle('hidden', isFullscreen() || isDrawingState);
   }
 
   function enterFullscreen() {

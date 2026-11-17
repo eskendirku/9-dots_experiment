@@ -356,10 +356,10 @@ input[type="range"].accent-purple::-webkit-slider-thumb {
 }
 
 /* ==========================================================================
-   Training Instructions Floating Banner (Tall, Narrow Cloud with Readable Text)
+   Training Instructions Floating Banner (Elevated, Compact Cloud Above Dots)
    ========================================================================== */
 #screen-training-hud {
-  top: clamp(60px, 8vh, 85px) !important;
+  top: clamp(10px, 1.8vh, 18px) !important;
   left: 50% !important;
   transform: translateX(-50%) !important;
   width: clamp(340px, 32vw, 420px) !important;
@@ -367,13 +367,13 @@ input[type="range"].accent-purple::-webkit-slider-thumb {
 }
 
 .training-hud-card {
-  padding: clamp(1.75rem, 3vh, 2.5rem) clamp(1.5rem, 2vw, 2.25rem) !important;
-  min-height: 190px !important;
+  padding: clamp(0.75rem, 1.4vh, 1.15rem) clamp(1.25rem, 1.8vw, 1.75rem) !important;
+  min-height: auto !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: center !important;
-  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.16), 0 10px 20px -5px rgba(0, 0, 0, 0.08) !important;
-  border-radius: 1.75rem !important;
+  box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.14), 0 6px 16px -4px rgba(0, 0, 0, 0.06) !important;
+  border-radius: 1.5rem !important;
 }
 
 /* Small viewport height adaptations (laptops 768p / 800p or compact windows) */
