@@ -1,0 +1,393 @@
+/* Style for Nine Dots Cognitive Experiment */
+
+/* ==========================================================================
+   Google Sans Fonts (Local Offline + Web Fallback)
+   ========================================================================== */
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(vendor/fonts/google-sans-cyrillic.woff2) format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(vendor/fonts/google-sans-cyrillic-ext.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(vendor/fonts/google-sans-latin.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Google Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(vendor/fonts/google-sans-latin-ext.woff2) format('woff2');
+  unicode-range: U+0100-02AF, U+0304, U+0308, U+0329, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Also preserve JetBrains Mono for numbers/debug */
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 100 800; src: url(vendor/fonts/jetbrains-mono-cyrillic-wght-normal.woff2) format('woff2'); unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: 'JetBrains Mono'; font-style: normal; font-display: swap; font-weight: 100 800; src: url(vendor/fonts/jetbrains-mono-latin-wght-normal.woff2) format('woff2'); unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+html, body, button, input, select, textarea, .font-sans, .font-display {
+  font-family: 'Google Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+  color: #1f2937;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+canvas {
+  touch-action: none;
+  display: block;
+}
+
+/* ==========================================================================
+   Responsive & Fluid Layout System (Resolution & Viewport Independence)
+   ========================================================================== */
+
+:root {
+  --fluid-h1: clamp(1.6rem, 2.5vw, 2.25rem);
+  --fluid-h2: clamp(1.35rem, 2.0vw, 1.85rem);
+  --fluid-h3: clamp(1.15rem, 1.6vw, 1.45rem);
+  --fluid-body: clamp(0.95rem, 1.15vw, 1.125rem);
+  --fluid-body-sm: clamp(0.85rem, 0.95vw, 0.95rem);
+  --fluid-btn-text: clamp(1.02rem, 1.2vw, 1.18rem);
+  --fluid-btn-choice-text: clamp(1.15rem, 1.4vw, 1.4rem);
+}
+
+/* Fluid Typography Helpers with 1.2x increased text intervals */
+.fluid-h1 {
+  font-size: var(--fluid-h1);
+  line-height: 1.35;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.fluid-h2 {
+  font-size: var(--fluid-h2);
+  line-height: 1.45;
+  font-weight: 700;
+}
+
+.fluid-h3 {
+  font-size: var(--fluid-h3);
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.fluid-body {
+  font-size: var(--fluid-body);
+  line-height: 1.95 !important;
+  letter-spacing: 0.015em;
+}
+
+.fluid-body-sm {
+  font-size: var(--fluid-body-sm);
+  line-height: 1.8 !important;
+  letter-spacing: 0.01em;
+}
+
+/* 1.2x larger font for insight description */
+.insight-desc {
+  font-size: clamp(1.14rem, 1.38vw, 1.35rem);
+  line-height: 1.95 !important;
+  letter-spacing: 0.015em;
+  font-weight: 400;
+}
+
+/* Non-bold survey intro text */
+.survey-intro-text {
+  font-size: var(--fluid-h2);
+  line-height: 1.95 !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em;
+  color: #374151;
+}
+
+/* Fluid, Balanced Buttons */
+.btn-primary-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fluid-btn-text);
+  font-weight: 600;
+  padding: clamp(0.8rem, 1.5vh, 1.05rem) clamp(2.5rem, 3.8vw, 3.8rem);
+  border-radius: 1rem;
+  background-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 10px 20px -3px rgba(37, 99, 235, 0.35);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  user-select: none;
+}
+.btn-primary-cta:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: 0 14px 28px -5px rgba(37, 99, 235, 0.45);
+}
+.btn-primary-cta:active {
+  transform: translateY(0) scale(0.99);
+}
+
+.btn-secondary-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--fluid-btn-text);
+  font-weight: 600;
+  padding: clamp(0.8rem, 1.5vh, 1.05rem) clamp(2rem, 3vw, 3rem);
+  border-radius: 1rem;
+  background-color: #ffffff;
+  color: #1f2937;
+  border: 2px solid #d1d5db;
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  user-select: none;
+}
+.btn-secondary-cta:hover {
+  border-color: #9ca3af;
+  background-color: #f9fafb;
+  transform: translateY(-1px);
+}
+
+.btn-choice-pill {
+  min-width: clamp(130px, 15vw, 180px);
+  padding: clamp(0.8rem, 1.5vh, 1.05rem) clamp(1.75rem, 3vw, 3rem);
+  font-size: var(--fluid-btn-choice-text);
+  font-weight: 600;
+  border-radius: 1rem;
+  background-color: #f9fafb;
+  border: 2px solid #e5e7eb;
+  color: #1f2937;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.btn-choice-pill:hover {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+  color: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 15px -3px rgba(59, 130, 246, 0.2);
+}
+
+/* Compact, ergonomic list buttons for Attention and Task Comprehension checks */
+.btn-list-option {
+  width: 100%;
+  text-align: left;
+  padding: clamp(0.5rem, 0.9vh, 0.7rem) clamp(0.9rem, 1.4vw, 1.35rem);
+  font-size: clamp(0.88rem, 1.05vw, 1.02rem);
+  font-weight: 500;
+  line-height: 1.55;
+  border-radius: 0.85rem;
+  background-color: #f9fafb;
+  border: 1.5px solid #e5e7eb;
+  color: #374151;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+.btn-list-option:hover {
+  border-color: #60a5fa;
+  background-color: #eff6ff;
+  color: #1e40af;
+}
+
+/* 1.2x Enlarged Action Buttons on Canvas (Повторить & Сохранить) */
+.btn-canvas-action {
+  font-size: clamp(1.05rem, 1.25vw, 1.22rem) !important;
+  font-weight: 700 !important;
+  padding: clamp(0.85rem, 1.4vh, 1.1rem) clamp(1.8rem, 2.4vw, 2.6rem) !important;
+  min-width: clamp(160px, 15vw, 210px);
+  border-radius: 1.15rem !important;
+  box-shadow: 0 14px 28px -4px rgba(0, 0, 0, 0.12), 0 8px 12px -3px rgba(0, 0, 0, 0.08) !important;
+  transition: all 0.25s ease !important;
+  cursor: pointer;
+  text-align: center;
+}
+.btn-canvas-action:hover {
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 20px 35px -5px rgba(0, 0, 0, 0.18) !important;
+}
+
+/* Screen Wrappers */
+.screen-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  padding: clamp(1rem, 2vh, 2rem) clamp(1rem, 2.5vw, 2.5rem);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.experiment-card {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+/* Range sliders */
+input[type="range"] {
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 9999px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #2563eb;
+  cursor: pointer;
+  transition: transform 0.1s ease, background-color 0.1s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+input[type="range"].accent-red::-webkit-slider-thumb {
+  background: #dc2626;
+}
+
+input[type="range"].accent-purple::-webkit-slider-thumb {
+  background: #7c3aed;
+}
+
+.fade-in {
+  animation: fadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Hidden system cursor for groups that use the virtual brush cursor */
+.cursor-none-custom {
+  cursor: none !important;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   Guaranteed Graphical Empty Space Around ALL Buttons (Top, Bottom, Left, Right)
+   ========================================================================== */
+
+/* 1. Language buttons (Empty space top, bottom, left, right) */
+#screen-language .btn-primary-cta,
+#screen-language .btn-secondary-cta {
+  margin: 18px 28px !important;
+  min-width: 200px;
+}
+
+/* 2. Group selection buttons/cards */
+.group-btn-selector {
+  margin: 20px 24px !important;
+}
+
+/* 3. Attention check & Task check list buttons */
+.btn-list-option {
+  margin: 14px 0 !important;
+  display: block;
+}
+
+/* 4. Save confirmation buttons */
+#screen-save-confirm .btn-secondary-cta,
+#screen-save-confirm .btn-primary-cta {
+  margin: 16px 24px !important;
+}
+
+/* 5. Canvas HUD buttons (Top-right corner: 104px down, 44px left) */
+#task-lock-hud {
+  top: 104px !important;
+  right: 44px !important;
+}
+
+#task-lock-hud .btn-canvas-action {
+  margin: 14px 0 !important;
+  display: block;
+}
+
+/* 6. Survey choice pills (Yes/No, Gender, Experimenter Presence) */
+.btn-choice-pill {
+  margin: 16px 24px !important;
+}
+
+/* 7. Export screen buttons */
+#screen-export button {
+  margin: 8px 16px !important;
+}
+
+/* 8. Single CTA buttons (General empty space top/bottom) */
+.btn-primary-cta,
+.btn-secondary-cta {
+  margin-top: 22px;
+  margin-bottom: 16px;
+}
+
+/* ==========================================================================
+   Training Instructions Floating Banner (Tall, Narrow Cloud with Readable Text)
+   ========================================================================== */
+#screen-training-hud {
+  top: clamp(60px, 8vh, 85px) !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: clamp(340px, 32vw, 420px) !important;
+  max-width: 92vw !important;
+}
+
+.training-hud-card {
+  padding: clamp(1.75rem, 3vh, 2.5rem) clamp(1.5rem, 2vw, 2.25rem) !important;
+  min-height: 190px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.16), 0 10px 20px -5px rgba(0, 0, 0, 0.08) !important;
+  border-radius: 1.75rem !important;
+}
+
+/* Small viewport height adaptations (laptops 768p / 800p or compact windows) */
+@media (max-height: 760px) {
+  .hero-icon-box {
+    width: 3.5rem !important;
+    height: 3.5rem !important;
+    margin-bottom: 0.75rem !important;
+  }
+  .hero-icon-box svg {
+    width: 1.85rem !important;
+    height: 1.85rem !important;
+  }
+  .compact-mb {
+    margin-bottom: 0.75rem !important;
+  }
+}
